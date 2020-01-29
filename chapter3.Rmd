@@ -108,7 +108,7 @@ $$f(x) = \cases{
 
 ---
    
-_Example: Two tetrahedral dice, each with faes labelled 1,2,3, and 4, are thrown and the scores noted, where the score is the sum of two nombers on which the dice land. Find the pdf of $X$, where $X$ is defined to be 'the score when two dice are thrown'._
+_Example: Two tetrahedral dice, each with faces labelled 1,2,3, and 4, are thrown and the scores noted, where the score is the sum of two nombers on which the dice land. Find the pdf of $X$, where $X$ is defined to be 'the score when two dice are thrown'._
 
 --
 
@@ -386,6 +386,51 @@ _Example 3.11: $X$ and $Y$ are independent random variables such that $E(X)=10$,
 
 (d) $\text{Var}(\frac{1}{2}X + Y) = 3.5$
 
+---
+layout: false
+
+# Covariance
+
+
+Given two random variables $X$ and $Y$ with means $E(X) = \mu$ and $E(Y) = \nu$ ($\nu$ is pronounced 'niu') respectively, the covariance between them is defined to be
+$$
+\text{Cov}(X,Y) = E\left[(X-\mu)(Y-\nu) \right]
+$$
+--
+
+Alternatively,
+$$
+\text{Cov}(X,Y) = E(XY) - \mu\nu
+$$
+ 
+--
+
+The covariance measures the joint variability of two random variables.
+The sign of the covariance (+ or -) shows the tendency in the linear relationship between the two variables.
+ 
+--
+
+Note that the covariance of $X$ with itself is its variance! i.e. $\text{Cov}(X,X) = E(X-\mu)^2 = \text{Var}(X)$.
+ 
+---
+layout: true
+
+# Correlation
+
+---
+
+If we scale the covariance by the product of the standard deviations of $X$ and $Y$, then we get the correlation coefficient between $X$ and $Y$. 
+
+$$
+\rho := \rho(X,Y) = \frac{\text{Cov}(X,Y)}{\sqrt{\text{Var}(X)\text{Var}(Y)}}
+$$
+
+This measures the level of association between two r.v.; it is a value between -1 and 1.
+
+---
+
+.center[![:scale 120%](figures/correlation.png)]
+
  
 ---
 layout: true
@@ -545,7 +590,7 @@ https://shiny.rit.albany.edu/stat/binomial/
 .pull-left[
 - Author: 朱世杰 (Zhū Shìjié) / Chu Shih-chieh
 - Title: 四元玉鉴 (sì yuán yù jiàn) / Jade Mirror of the Four Unknowns
-- He showed how to converta problem stated verbally into a system of polynomial equations up to the 14th order.
+- He showed how to convert a problem stated verbally into a system of polynomial equations up to the 14th order.
 ]
 
 .pull-right[
