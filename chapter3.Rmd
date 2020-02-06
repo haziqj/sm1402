@@ -392,7 +392,7 @@ layout: false
 # Covariance
 
 
-Given two random variables $X$ and $Y$ with means $E(X) = \mu$ and $E(Y) = \nu$ ($\nu$ is pronounced 'niu') respectively, the covariance between them is defined to be
+Given two random variables $X$ and $Y$ with means $E(X) = \mu$ and $E(Y) = \nu$ ( $\nu$ is pronounced 'niu') respectively, the covariance between them is defined to be
 $$
 \text{Cov}(X,Y) = E\left[(X-\mu)(Y-\nu) \right]
 $$
@@ -802,7 +802,7 @@ class: inverse, middle, center
 
 ```{r, include = FALSE}
 file_name <- paste0("file://", normalizePath("chapter3.html"))
-# webshot::webshot(file_name, "chapter0.pdf", delay = 5)
+# webshot::webshot(file_name, "chapter3.pdf", delay = 5)
 pagedown::chrome_print(file_name)
 ```
 
