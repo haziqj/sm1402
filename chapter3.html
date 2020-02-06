@@ -252,7 +252,7 @@ _Calculate (a) `\(E(X)\)`, (b) `\(E(3)\)`, (c) `\(E(5X)\)`, (d) `\(E(5X+3)\)`_
 
 --
 
-(a) `\(E(X) = 0 \times 0.1 + 1 \times 0.6 + 2 \times 0.3 = 2.2\)`
+(a) `\(E(X) = 0 \times 0.1 + 1 \times 0.6 + 2 \times 0.3 = 1.2\)`
 
 --
 
@@ -260,14 +260,14 @@ _Calculate (a) `\(E(X)\)`, (b) `\(E(3)\)`, (c) `\(E(5X)\)`, (d) `\(E(5X+3)\)`_
 
 --
 
-(c) `\(E(5X) = (5\times 0) \times 0.1 + (5 \times 1) \times 0.6 + (5\times 2) \times 0.3 = 11\)`
+(c) `\(E(5X) = (5\times 0) \times 0.1 + (5 \times 1) \times 0.6 + (5\times 2) \times 0.3 = 6\)`
 
 --
 
 `$$\text{(d)} \begin{align}
 E(5X+3) &amp;= (5\times 0 + 3) \times 0.1 + (5 \times 1 + 3) \times 0.6 \\
 &amp;\hspace{3em} + (5\times 2 + 3) \times 0.3 \\
-&amp;= 14 \\
+&amp;= 9 \\
 \end{align}$$`
 
 ---
@@ -413,6 +413,22 @@ The sign of the covariance (+ or -) shows the tendency in the linear relationshi
 --
 
 Note that the covariance of `\(X\)` with itself is its variance! i.e. `\(\text{Cov}(X,X) = E(X-\mu)^2 = \text{Var}(X)\)`.
+ 
+---
+
+#### REMARK
+
+If `\(X\)` and `\(Y\)` are not independent, then
+
+$$
+\text{Var}(X + Y) = \text{Var}(X) +  \text{Var}(Y) + \text{Cov(X,Y)}
+$$
+ 
+But only if they are independent do we get  
+ 
+$$
+\text{Var}(X + Y) = \text{Var}(X) +  \text{Var}(Y) 
+$$ 
  
 ---
 layout: true
