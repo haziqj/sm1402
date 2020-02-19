@@ -897,9 +897,7 @@ class: inverse, middle, center
 # END
 
 &lt;!-- ```{r, include = FALSE} --&gt;
-&lt;!-- file_name &lt;- paste0("file://", normalizePath("chapter4.html")) --&gt;
-&lt;!-- # webshot::webshot(file_name, "chapter0.pdf", delay = 5) --&gt;
-&lt;!-- pagedown::chrome_print(file_name) --&gt;
+&lt;!-- system("decktape remark chapter4.html chapter4.pdf --chrome-arg=--disable-web-security") --&gt;
 &lt;!-- ``` --&gt;
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
