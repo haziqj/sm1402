@@ -17,6 +17,7 @@ output:
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, width = 65)
+knitr::opts_chunk$set(cache = TRUE)
 library(tidyverse)
 library(ptree)
 ```
@@ -426,7 +427,7 @@ P(1<X<3) &= F(3) - F(1)\\
 layout:false
 class: center, middle, inverse
 
-# Special continuous distributions
+## Special continuous distributions: The normal distributions
 
 ---
 layout:true
@@ -703,7 +704,7 @@ Note that variances are _added_ even when dealing with the difference between in
 
 ---
   
-_Example: An investoer has the choice of two out of four investments: $X_1$, $X_2$, $X_3$ and $X_4$. The profits (in BND 1,000 per annum) from these may be assumed to be indpendently distributed and:_
+_Example: An invester has the choice of two out of four investments: $X_1$, $X_2$, $X_3$ and $X_4$. The profits (in BND 1,000 per annum) from these may be assumed to be indpendently distributed and:_
 
 - Profit from $X_1 \sim \text{N}(2,1)$
 - Profit from $X_2 \sim \text{N}(3,3)$
@@ -714,7 +715,7 @@ _Which pair of investments should the investor choose in order to maximise the p
 
 --
 
-Let's sum of the ${}^4C_2=6$ possible pairwise combinations of normal r.v. Then calculate the $Z$ value. We want to maximise $P(Z>2)$ (the distribution which gives us the smallest $Z$ value).
+Let's sum the ${}^4C_2=6$ possible pairwise combinations of normal r.v. Then calculate the $Z$ value. We want to maximise $P(Z>2)$ (the distribution which gives us the smallest $Z$ value).
 
 ---
 
@@ -741,6 +742,298 @@ Also known as the empirical rule, is a shorthand to remember the percentage of v
 
 
 ---
+layout:false
+class: center, middle, inverse
+
+## Normal approximations to discrete distributions
+
+
+---
+layout: true
+
+## Normal approximation to binomial 
+
+---
+
+Recall that $X\sim\text{Bin}(n,p)$ has these properties 
+
+- $P(X=x) = {n \choose x} p^x (1-p)^{n-x}$
+- $E(X)=np$
+- $Var(X)=np(1-p)$
+
+--
+
+Consider computing these probabilities below, when $n=100$:
+
+- $P(X=50)$ (try calculating ${100 \choose 50}$ and $p^{50}$ for various values of $p$&mdash;what do you observe?)
+- $P(X>50)$
+- $P(25<X<75)$ (how many computations must you do?)
+---
+
+What does the distribution actually look like? Fix $p=0.3$ and let $n\to\infty$:
+
+.center[![](figures/bin5.png)]
+
+---
+
+What does the distribution actually look like? Fix $p=0.3$ and let $n\to\infty$:
+
+.center[![](figures/bin10.png)]
+
+---
+
+What does the distribution actually look like? Fix $p=0.3$ and let $n\to\infty$:
+
+.center[![](figures/bin50.png)]
+
+---
+
+What does the distribution actually look like? Fix $p=0.3$ and let $n\to\infty$:
+
+.center[![](figures/bin100.png)]
+
+---
+
+What does the distribution actually look like? Fix $p=0.3$ and let $n\to\infty$:
+
+.center[![](figures/bin500.png)]
+
+---
+
+.center[**When $np >5$ and $n(1-p)>5$, it is appropriate to use the normal approximation to the binomial**]
+
+As $n\to\infty$, $\text{Bin}(n,p) \to N\big(np, np(1-p)\big)$. 
+--
+This means that for $X\sim \text{Bin}(n,p)$,
+
+\begin{align*}
+P(X < x) 
+&\approx P\left(\frac{X-np}{\sqrt{np(1-p)}} < \frac{x-np}{\sqrt{np(1-p)}} \right) \\
+&= \Phi\left( \frac{x-np}{\sqrt{np(1-p)}} \right)
+\end{align*}
+
+where $\Phi(\cdot)$ is the cdf of the standard normal distribution.
+---
+layout: true
+
+# Continuity correction
+
+---
+
+For discrete distributions,
+$$
+P(X\leq x) = P(X < x+1)
+$$
+But we know for continuous distributions, $P(X\leq x) = P(X<x)$. 
+So when a discrete $X$ is approximated by a continuous distribution, we must apply **continuity correction**.
+
+--
+
+Roughly speaking, 
+$$
+P(X \leq x) \approx P(X_{cts} < x + 1/2)
+$$
+
+---
+
+Apply these continuity corrections in your calculations!
+
+| Discrete | Continous |
+|-------|:---:|
+| $X=c$ | $c-0.5 < X < c + 0.5$ |
+| $X<c$ | $X < c + 0.5$ |
+| $X\leq c$ | $X < c + 0.5$ |
+| $X>c$ | $X>c-0.5$ |
+| $X\geq c$ | $X>c-0.5$ |
+
+--
+
+Questions
+  - What is continuity correction for $a<X<b$?
+  - What is $P(X>0)$?
+  - What is $P(X=-1)$?
+
+---
+*Example 6.8: Find the probability of obtaining 4, 5, 6 or 7 heads when a fair coin is tossed 12 times.*
+
+--
+
+Let $X$ be the number of heads when coin is tossed 12 times.
+$X\sim\text{Bin}(12,0.5)$. We are interested in $P(X=4,5,6,7)$.
+Since $np$ and $n(1-p)$ are both greater than 5, we can use the normal approximation $X\sim N(6,3)$.
+
+--
+
+\begin{align*}
+P(4 \leq X \leq 7) 
+&\approx P(3.5 < X < 7.5) \\
+&=P\left(\frac{3.5-6}{\sqrt{3}} < Z < \frac{7.5-6}{\sqrt{3}}  \right) \\
+&=P(-1.44 < Z < 0.866) \\
+&= \Phi(0.866) - \Phi(-1.44) \\
+&= 0.8067549 - 0.0749337 = 0.732
+\end{align*}
+
+---
+layout: true
+
+## Normal approximation to Poisson 
+
+---
+
+Recall that $X\sim\text{Pois}(\lambda)$ has these properties 
+
+- $P(X=x) = e^{-\lambda}\lambda^x/x!$
+- $E(X)=\lambda$
+- $Var(X)=\lambda$
+
+--
+
+For large $\lambda$ (say $\lambda=100$), try computing
+- $e^{-\lambda}$
+- $100^{100}$
+
+--
+
+This can be problematic if computations not handled carefully (just like the binomial case).
+
+---
+
+.center[**When $\lambda > 15$, it is appropriate to use the normal approximation to the Poisson**]
+
+As $n\to\infty$, $\text{Pois}(\lambda)   \to N\big(\lambda, \lambda \big)$. 
+--
+This means that for $X\sim \text{Pois}(\lambda)$,
+
+\begin{align*}
+P(X < x) 
+&\approx P\left(\frac{X-\lambda}{\sqrt{\lambda}} < \frac{x-\lambda}{\sqrt{\lambda}} \right) \\
+&= \Phi\left(\frac{x-\lambda}{\sqrt{\lambda}} \right)
+\end{align*}
+
+where $\Phi(\cdot)$ is the cdf of the standard normal distribution.
+But also don't forget *continuity correction*!
+
+---
+
+*Example 6.10: A radioactive disintegration gives counts that follow a Poisson distribution with a mean count of 25 per second. Find the probability that in a one-second interval the count is between 23 and 27 inclusive.*
+
+--
+
+Denote the radioactive disintegration counts by $X$. Then $X \sim \text{Pois}(25)$. We are interested in $P(23\leq X \leq 27)$. Since $\lambda>15$, we can apply a normal approximation.
+
+--
+
+\begin{align*}
+P(23 \leq X \leq 27) 
+&\approx P(22.5 < X < 27.5) \\
+&=P\left(\frac{22.5-25}{\sqrt{25}} < Z < \frac{27.5-25}{\sqrt{25}}  \right) \\
+&=P(-0.5 < Z < 0.5) \\
+&= 2\Phi(0.5) - 1 \\
+&= 2(0.6914625) - 1 = 0.383
+\end{align*}
+
+
+---
+layout:false
+class: center, middle, inverse
+
+## Special continuous distributions: The exponential distributions
+
+
+---
+layout:true
+
+# Exponential distribution
+---
+
+Suppose you are interested in
+
+- The amount of time until an earthquake occurs.
+- The time between two lightbulbs failing.
+- The length (in minutes) of faculty staff meetings at UBD.
+- The average waiting time at a hospital's A&E.
+
+--
+
+The exponential distribution is the probability distribution of the time between events in a Poisson point process, i.e., a process in which events occur continuously and independently at a constant average rate. 
+
+---
+
+![](figures/exp_poisson_process.png)
+
+---
+
+Let $X$ be disributed according to an exponential distribution with rate $\lambda$. We write $X\sim\text{Exp}(\lambda)$. Then its pdf is
+
+$$
+f(x) = \lambda e^{-\lambda x}
+$$
+
+--
+
+<u>Properties</u>
+
+- The parameter of the exponential distribution is the rate $\lambda>0$.
+- Support: $x>0$.
+- $E(X) = 1/\lambda$.
+- $Var(X) = 1/\lambda^2$.
+
+
+
+
+
+---
+
+The pdf experiences "exponential decay"&mdash; long  wait times between two events occuring becomes more and more unlikely.
+
+![:scale 90%](figures/exponentialdist.png)
+
+---
+
+*Example: Suppose $\lambda = 3$, find $P(0.5<X<1)$ and $P(X<6)$.*
+
+--
+
+\begin{align*}
+P(0.5<X<1) &= \int_{0.5}^1 3e^{-3x}dx \\
+&= [-e^{-3x}]_{0.5}^1 \\
+&= e^{-1.5} - e^{-3}   = 0.173
+\end{align*}
+
+
+--
+
+
+\begin{align*}
+P(X<6) &= \int_{0}^6 3e^{-3x}dx \\
+&= [-e^{-3x}]_{0}^6 \\
+&= 1 - e^{-18}   \approx 1
+\end{align*}
+
+---
+layout: true
+
+# Memoryless property
+
+---
+
+The exponential distribution has what is called the "memoryless" property. 
+Given that you know the last event occured in $x$ amount of time, the next occurence is independent of this.
+
+--
+
+\begin{align*}
+P(X > s + t | X > s) = P(X > t)
+\end{align*}
+
+--
+
+For example, assume that bus waiting times are exponentially distributed.
+A memoryless wait for a bus would mean that the probability that a bus arrived in the next minute is the same whether you just got to the station or if you’ve been sitting there for twenty minutes already.
+
+https://perplex.city/memorylessness-at-the-bus-stop-f2c97c59e420
+
+---
 
 
 layout: false
@@ -749,7 +1042,5 @@ class: inverse, middle, center
 # END
 
 <!-- ```{r, include = FALSE} -->
-<!-- file_name <- paste0("file://", normalizePath("chapter4.html")) -->
-<!-- # webshot::webshot(file_name, "chapter0.pdf", delay = 5) -->
-<!-- pagedown::chrome_print(file_name) -->
+<!-- system("decktape remark chapter4.html chapter4.pdf --chrome-arg=--disable-web-security") -->
 <!-- ``` -->
