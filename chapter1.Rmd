@@ -1,5 +1,5 @@
 ---
-title: "SM-1402 Basic Statistics"
+title: "SM-1402/CU-0304 Basic Statistics"
 subtitle: "Chapter 1 (Summarising Data)"
 author: "Dr. Haziq Jamil"
 date: "Semester 2, 2019/20"

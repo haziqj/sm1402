@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>SM-1402/CU-0304 Basic Statistics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Dr. Haziq Jamil" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/duke-blue.css" rel="stylesheet" />
+    <link href="libs/remark-css/metropolis-fonts.css" rel="stylesheet" />
+    <link rel="stylesheet" href="custom.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# SM-1402/CU-0304 Basic Statistics
+## Chapter 5 (Sampling and Estimation)
+### Dr. Haziq Jamil
+### Semester 2, 2019/20
+
+---
+
+
+
+
+---
+
+# Population
+
+In a statistical enquiry you often need information about a particular group. This group is known as the population or the target population, and it could be small, large or even infinite. Examples:
+
+--
+
+- Student body of UBD.
+- Population of Brunei aged 15 to 60 in employment (Labour Force).
+- Supermarkets in Brunei-Muara.
+- Cans of soft drink produced in a factory.
+
+--
+
+  
+Note: Populations don't always refer to groups of people, and population size may not be fixed or known.
+
+---
+
+# Sample
+
+
+What if you wanted to know important aspects of the population, say
+
+- What is the mean and standard deviation?
+- What is the distribution like?
+- How many are above a certain value `\(x\)`?
+- What is the probability that...?
+
+--
+
+It seems that you will have to do data collection on every single unit in the population. Not always feasible!
+
+--
+
+In practice, we collect a random sample instead. It is **cheaper**, **saves time**, and it is possible to get **accurate results** if sampling is done correctly.
+
+---
+
+.center[![:scale 90%](figures/popvssamp.jpg)]
+
+---
+
+# Statistic
+
+Imagine having population values `\(X_1,\dots,X_N\)`, where each of these variates have mean `\(E(X_i)=\mu\)` and variance `\(\text{Var}(X_i)=\sigma^2\)`.
+From this entire population of size `\(N\)`, suppose you collect data represented by the random variables
+
+`$$\{X_1, X_2, \dots, X_n\}, \hspace{1em}n\ll N$$`
+
+--
+
+A **statistic** is defined as a &lt;u&gt;known&lt;/u&gt; function of these random variables. Therefore,
+
+- `\(\bar X = \frac{1}{n}\sum_{i=1}^n X_i\)`
+
+- `\(s^2 = \frac{1}{n-1}\sum_{i=1}^n (X_i - \bar X)^2\)`  
+
+- `\(\max\{X_1, X_2, \dots, X_n\} - \min\{X_1, X_2, \dots, X_n\}\)`
+
+are all examples of statistics.
+
+---
+
+## The sample mean
+
+One of the most common statistic that we like to collect is the **sample mean**
+
+`$$\bar X = \frac{1}{n}\sum_{i=1}^n X_i$$`
+
+which is meant to give an **estimate** of the true population mean `\(\mu\)`.
+
+--
+
+Realise that the sample itself may be viewed as **random variables**, because undoubtedly there will be some random fluctuations in the data depending on who took the sample, when it was taken, how it was taken, etc.
+
+--
+
+This suggests that the sample mean (or any statistic) is random, and therefore has some kind of distribution!
+
+---
+layout: true
+
+### The Central Limit Theorem (CLT)
+
+---
+
+A very important theorem in statistics concerning the sample mean is called the Central Limit Theorem (CLT). 
+
+--
+
+If `\(\{X_1, X_2, \dots, X_n\}\)` is a random sample from a population with mean and variance `\(\mu\)` and `\(\sigma^2\)` respectively, then
+
+$$
+\bar X \sim \text{N}(\mu, \sigma^2/n)
+$$
+
+--
+
+That is, the mean and variance of the &lt;u&gt;sample mean&lt;/u&gt; are `\(E(\bar X) = \mu\)` and `\(\text{Var}(\bar X)=\sigma^2/n\)`, and the sample mean is **normally distributed**.
+
+---
+
+Remarks:
+
+- Amazingly, the samples themselves need not come from a normal distribution for CLT to work.
+
+- This means that means of categorical data will also be subjected to CLT. For instance,
+
+   - For binary variables (e.g. coin flip), then the proportion of 'Heads' will have a normal distribution by the CLT.
+
+- The CLT depends on a large sample size `\(n\)` to work. Typically `\(n\geq 30\)` will do.
+
+
+---
+
+
+*Example: At a college the masses of the male students can be modeled by a normal distribution with mean mass 70kg and standard deviation 5kg.
+Four male students are chosen at random. Find the probability that their mean mass is less than 65kg?*
+
+--
+
+Let `\(X_i\)` represent the mass of a male student. Then `\(X_i\sim\text{N}(70,5^2)\)`. For these four students sampled, `\(\bar X_4\sim\text{N}(70,5^2/4)\)` according to the CLT.
+
+`\begin{align*}
+P(\bar X &lt; 65) 
+&amp;= P\left(\frac{\bar X_4 - 70}{\sqrt{25/4}} &lt; \frac{65 - 70}{\sqrt{25/4}}\right) \\
+&amp;= P(Z &lt; -2) \\
+&amp;= 1 - \Phi(2)\\
+&amp;= 1 - 0.9772 = 0.0228.
+\end{align*}`
+
+---
+
+*Example 7.2: Thirty random observations are taken from each of the following distributions and the sample mean calculated. Find, in each case, the probability that the sample mean exceeds 5.*
+
+*(a) X is the number of telephone calls made in an evening to a counseling service,
+where X ~ Po(4.5).*
+
+--
+
+From the properties of a Poisson r.v., we know that `\(E(X)=\text{Var}(X)=\lambda=4.5\)`. So, the sample mean is distributed according to 
+`\(\bar X \sim \text{N}(4.5,4.5/30)\)`.
+
+`\begin{align*}
+P(\bar X&gt;5) 
+&amp;= P\left( \frac{\bar X - 4.5}{\sqrt{4.5/30}} &gt; \frac{5 - 4.5}{\sqrt{4.5/30}} \right) \\
+&amp;= P(Z&gt;1.291) = 0.098
+\end{align*}`
+
+---
+layout: false
+
+# Parameter estimation
+
+Recall that, in order to specify a
+- Binomial distribution, need `\(n\)` and `\(p\)`
+
+--
+
+- Poisson distribution, need rate `\(\lambda\)`
+
+--
+
+- Normal distribution, need `\(\mu\)` and `\(\sigma^2\)`
+
+--
+
+These are all called the **parameters** of the distribution. We need them to calculate the mean and variance of a distribution, for example.
+
+--
+
+Suppose you don't know the values of these parameters. How can you estimate the mean and variance? We can obtain an estimate by looking at the data collected, and using the appropriate statistic.
+
+---
+## Point estimates (mean)
+
+
+
+---
+
+layout: false
+class: inverse, middle, center
+
+# END
+
+&lt;!-- ```{r, include = FALSE} --&gt;
+&lt;!-- system("decktape remark chapter4.html chapter4.pdf --chrome-arg=--disable-web-security") --&gt;
+&lt;!-- ``` --&gt;
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script src="macros.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

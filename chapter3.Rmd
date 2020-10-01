@@ -1,5 +1,5 @@
 ---
-title: "SM-1402 Basic Statistics"
+title: "SM-1402/CU-0304 Basic Statistics"
 subtitle: "Chapter 3 (Probability Distributions)"
 author: "Dr. Haziq Jamil"
 date: "Semester 2, 2019/20"
@@ -816,9 +816,9 @@ class: inverse, middle, center
 # END
 
 
-```{r, include = FALSE}
-file_name <- paste0("file://", normalizePath("chapter3.html"))
-# webshot::webshot(file_name, "chapter3.pdf", delay = 5)
-pagedown::chrome_print(file_name)
-```
+<!-- ```{r, include = FALSE} -->
+<!-- file_name <- paste0("file://", normalizePath("chapter3.html")) -->
+<!-- # webshot::webshot(file_name, "chapter3.pdf", delay = 5) -->
+<!-- pagedown::chrome_print(file_name) -->
+<!-- ``` -->
 

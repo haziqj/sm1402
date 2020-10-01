@@ -1,5 +1,5 @@
 ---
-title: "SM-1402 Basic Statistics"
+title: "SM-1402/CU-0304 Basic Statistics"
 subtitle: "Chapter 2 (Probability)"
 author: "Dr. Haziq Jamil"
 date: "Semester 2, 2019/20"
@@ -19,6 +19,7 @@ class: middle, center
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE, width = 65)
 library(tidyverse)
+# devtools::install_github("jweisber/ptree")
 library(ptree)
 ```
 
@@ -908,7 +909,7 @@ class: inverse, middle, center
 
 # END
 
-```{r, include = FALSE}
-system("decktape remark chapter2.html chapter2.pdf --chrome-arg=--disable-web-security")
-```
+<!-- ```{r, include = FALSE} -->
+<!-- system("decktape remark chapter2.html chapter2.pdf --chrome-arg=--disable-web-security") -->
+<!-- ``` -->
 
