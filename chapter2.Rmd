@@ -2,7 +2,7 @@
 title: "SM-1402/CU-0304 Basic Statistics"
 subtitle: "Chapter 2 (Probability)"
 author: "Dr. Haziq Jamil"
-date: "Semester 2, 2019/20"
+date: "Semester 1, 2020/21"
 output:
   xaringan::moon_reader:
     css: [default, duke-blue, metropolis-fonts, "custom.css"]
@@ -909,7 +909,10 @@ class: inverse, middle, center
 
 # END
 
-<!-- ```{r, include = FALSE} -->
-<!-- system("decktape remark chapter2.html chapter2.pdf --chrome-arg=--disable-web-security") -->
-<!-- ``` -->
+```{r, include = FALSE}
+file_name <- paste0("file://", normalizePath("chapter2.html"))
+# webshot::webshot(file_name, "chapter2.pdf", delay = 5)
+pagedown::chrome_print(file_name, wait = 3)
+```
+
 

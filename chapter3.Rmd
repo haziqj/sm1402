@@ -2,7 +2,7 @@
 title: "SM-1402/CU-0304 Basic Statistics"
 subtitle: "Chapter 3 (Probability Distributions)"
 author: "Dr. Haziq Jamil"
-date: "Semester 2, 2019/20"
+date: "Semester 1, 2020/21"
 output:
   xaringan::moon_reader:
     css: [default, duke-blue, metropolis-fonts, "custom.css"]
