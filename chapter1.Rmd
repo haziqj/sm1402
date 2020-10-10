@@ -35,18 +35,25 @@ Numeric data can be one of two types: *discrete* or *continuous*.
 ### Discrete data
 
 Discrete data can take **only exact (whole) values**, for example:
+
+--
+
 - the number of lecture rooms in UBD,
 - the number of students in a class,
 - the number of durians on each tree in a plantations.
 
-Example of raw discrete data: _An orange tree produces roughly a number of fruits per tree. A survey of 30 orange trees yielded the following number of fruits per tree._
+--
+
+Example of raw discrete data: _An orange tree produces roughly the same number of fruits per tree. A survey of 30 orange trees yielded the following number of fruits per tree._
 
 ```{r, echo = FALSE, comment = ""}
-(orange.fruits <- c(
-  31, 32, 34, 30, 32, 33, 31, 34, 32, 33, 
-  35, 32, 32, 33, 32, 32, 33, 31, 32, 33, 
-  32, 30, 31, 31, 32, 30, 33, 32, 33, 33
-))
+orange.fruits <- c(
+  21, 22, 24, 20, 22, 23, 21, 24, 22, 23, 
+  25, 22, 22, 23, 22, 22, 23, 21, 22, 23, 
+  22, 20, 21, 21, 22, 20, 23, 22, 23, 23
+)
+cat(orange.fruits[1:15])
+cat(orange.fruits[16:30])
 ```
 
 ---
@@ -54,17 +61,24 @@ Example of raw discrete data: _An orange tree produces roughly a number of fruit
 ### Continuous data
 
 Continuous data _cannot_ take exact (whole) values, but can be given only within a specified range, or measured to a specified degree of accuracy.
+
+--
+
 - the heights of students in UBD,
 - the length of classrooms in UBD,
 - the travel time in minutes from home to UBD.
 
+--
+
 Example of raw continuous data: _A survey of the heights of 20 children in a sports club yielded the following measurements (rounded to the nearest centimetre)_
 
 ```{r, echo = FALSE, comment = ""}
-(children.heights <- c(
+children.heights <- c(
   133, 136, 120, 138, 133, 131, 127, 141, 127, 143,
   130, 131, 125, 144, 128, 134, 135, 137, 133, 129
-))
+)
+cat(children.heights[1:10])
+cat(children.heights[11:20])
 ```
 
 ---
@@ -81,20 +95,13 @@ Raw data can be grouped for a more concise presentation.
 Count the number of times each value occurs and summarise these in a table known as a **frequency distribution**
 
 ```{r, echo = FALSE, comment = ""}
-(orange.fruits <- c(
-  31, 32, 34, 30, 32, 33, 31, 34, 32, 33, 
-  35, 32, 32, 33, 32, 32, 33, 31, 32, 33, 
-  32, 30, 31, 31, 32, 30, 33, 32, 33, 33
-))
-```  
-```{r, echo = FALSE, comment = ""}
+cat(orange.fruits[1:15])
+cat(orange.fruits[16:30])
 freq.tab <- table(orange.fruits)
-freq.tab <- cbind("Frequency", t(freq.tab), 
-                  paste0("Total = ", length(orange.fruits)))
+freq.tab <- cbind("Frequency", t(freq.tab), length(orange.fruits))
 colnames(freq.tab)[1] <- "Number of oranges"
-knitr::kable(freq.tab, format = "markdown", label = "test"
-             #row.names = c("Number of oranges", "Frequency")
-             )
+colnames(freq.tab)[ncol(freq.tab)] <- "Total"
+knitr::kable(freq.tab, format = "markdown")
 ```
 
 ---
@@ -104,23 +111,18 @@ knitr::kable(freq.tab, format = "markdown", label = "test"
 To form a **frequency distribution** of the heights of the 20 children, group the information into **classes or intervals**
 
 ```{r, echo = FALSE, comment = ""}
-(children.heights <- c(
-  133, 136, 120, 138, 133, 131, 127, 141, 127, 143,
-  130, 131, 125, 144, 128, 134, 135, 137, 133, 129
-))
-```
-```{r, echo = FALSE, comment = ""}
+cat(children.heights[1:10])
+cat(children.heights[11:20])
 freq.tab <- table(cut(children.heights, seq(119.5, 144.5, by = 5), 
                       dig.lab = 5))
 names(freq.tab) <- gsub("\\(","",names(freq.tab))
 names(freq.tab) <- gsub("\\]","",names(freq.tab))
 names(freq.tab) <- gsub(",","-",names(freq.tab))
 freq.tab <- cbind("Freq.", t(freq.tab), 
-                  paste0("Total = ", length(children.heights)))
+                  length(children.heights))
 colnames(freq.tab)[1] <- "Height (cm)"
-knitr::kable(freq.tab, format = "markdown", label = "test"
-             #row.names = c("Number of oranges", "Frequency")
-             )
+colnames(freq.tab)[ncol(freq.tab)] <- "Total"
+knitr::kable(freq.tab, format = "markdown")
 ```
 
 The values 119.5, 124.5, 129.4, ... are called the **class boundaries**. The **upper class boundary** of one interval is the lower class boundary of the next interval.
@@ -131,7 +133,7 @@ The values 119.5, 124.5, 129.4, ... are called the **class boundaries**. The **u
 
 - The **mode** (for discrete data) is the is the value which occurs most often.    This can be read off directly from the frequency distribution.
 
-  For the orange data, the mode is _32 oranges_.
+  For the orange data, the mode is _22 oranges_.
 
 - The **width of an interval** (for grouped data) is the difference between boundaries.
 
